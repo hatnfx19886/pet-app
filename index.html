@@ -90,7 +90,7 @@
         <div class="container" id="main">
           <div class="row justify-content-center align-items-center mt-4">
             <div class="col-lg-6 col-lg-offset-4">
-              <form>
+              <form id="add-pet-form">
                 <div class="form-group row mb-3">
                   <label for="input-id" class="col-sm-3 col-form-label"
                     >Pet ID</label
@@ -101,6 +101,7 @@
                       class="form-control"
                       id="input-id"
                       placeholder="Input ID"
+                      required
                     />
                   </div>
                 </div>
@@ -114,6 +115,7 @@
                       class="form-control"
                       id="input-name"
                       placeholder="Input Name"
+                      required
                     />
                   </div>
                   <label
@@ -128,6 +130,9 @@
                       class="form-control"
                       id="input-age"
                       placeholder="Input Age"
+                      required
+                      min="1"
+                      max="15"
                     />
                   </div>
                 </div>
@@ -153,6 +158,9 @@
                       class="form-control"
                       id="input-weight"
                       placeholder="Input Weight"
+                      required
+                      min="1"
+                      max="15"
                     />
                   </div>
 
@@ -168,6 +176,9 @@
                       class="form-control"
                       id="input-length"
                       placeholder="Input Length"
+                      required
+                      min="1"
+                      max="100"
                     />
                   </div>
                 </div>
@@ -189,14 +200,6 @@
                   <div class="col-sm-3">
                     <select class="form-control" id="input-breed">
                       <option>Select Breed</option>
-                      <!-- <option>Tabby</option>
-										<option>Domestic Medium Hair</option>
-										<option>Mixed Breed</option>
-										<option>Domestic Short Hair</option>
-										<option>Terrier</option>
-										<option>Greyhound</option>
-										<option>Persian</option>
-										<option>Rottweiler</option> -->
                     </select>
                   </div>
                 </div>
@@ -233,7 +236,7 @@
                     >
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary" id="submit-btn">
+                <button type="submit" class="btn btn-primary" id="submit-btn">
                   Submit
                 </button>
                 <button type="button" class="btn btn-warning" id="healthy-btn">

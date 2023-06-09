@@ -1,6 +1,6 @@
 'use strict';
 // Choose element
-const submitBtn = document.getElementById('submit-btn');
+const form = document.getElementById('pet-edit-form');
 const idInput = document.getElementById('input-id');
 const nameInput = document.getElementById('input-name');
 const ageInput = document.getElementById('input-age');
@@ -110,7 +110,8 @@ const editPet = function (petid) {
 
 // Click Submit
 let now = new Date();
-submitBtn.addEventListener('click', function () {
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
   const data = {
     id,
     name: nameInput.value,
@@ -127,46 +128,16 @@ submitBtn.addEventListener('click', function () {
   };
   // Check validate
   let validate = true;
-  // Check name
-  if (!data.name) {
-    validate = false;
-    alert('Plear input for Pet Name ');
-  }
-  // Check age
-  if (!data.age) {
-    validate = false;
-    alert('Please input for Age');
-  } else if (data.age < 1 || data.age > 15) {
-    validate = false;
-    alert('Age must be between 1 and 15!');
-  }
   // Check type
   if (data.type === 'Select Type') {
     validate = false;
     alert('Please select Type!');
-  }
-  // Check weigth
-  if (!data.petWeight) {
-    validate = false;
-    alert('Please input for Weight');
-  } else if (data.petWeight < 1 || data.petWeight > 15) {
-    validate = false;
-    alert('Weight must be between 1 and 15!');
-  }
-  // Check length
-  if (!data.petLength) {
-    validate = false;
-    alert('Please input for Length');
-  } else if (data.petLength < 1 || data.petLength > 100) {
-    validate = false;
-    alert('Length must be between 1 and 100!');
   }
   // Check breed
   if (data.breed === 'Select Breed') {
     validate = false;
     alert('Please select Breed!');
   }
-
   // Add pet in the array
   if (validate) {
     const index = petArr.findIndex((x) => x.id === data.id);
