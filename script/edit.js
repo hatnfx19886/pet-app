@@ -30,40 +30,7 @@ const clearInput = function () {
 };
 const petArr = getFromStorage('pet') || [];
 
-// Function show pet list
-const renderTableData = function (arr) {
-  tableBodyEl.innerHTML = '';
-  arr.forEach((pet) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `<th scope="row">${pet.id}</th>
-  <td>${pet.name}</td>
-  <td>${pet.age}</td>
-  <td>${pet.type}</td>
-  <td>${pet.petWeight} kg</td>
-  <td>${pet.petLength} cm</td>
-  <td>${pet.breed}</td>
-  <td>
-    <i class="bi bi-square-fill" style="color: ${pet.color}"></i>
-  </td>
-  <td><i class="bi ${
-    pet.vaccinated ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
-  }"></i></td>
-  <td><i class="bi ${
-    pet.dewormed ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
-  }"></i></td>
-  <td><i class="bi ${
-    pet.sterilized ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
-  }"></i></td>
-  <td>${pet.date}</td>
-<td>
-    <button type="button" class="btn btn-warning" onclick="editPet('${
-      pet.id
-    }')">Edit</button>
-  </td>`;
-    tableBodyEl.appendChild(row);
-  });
-};
-renderTableData(petArr);
+renderTableData(petArr, 'edit');
 
 // Show breed list
 const renderBreed = function (arr) {
@@ -144,8 +111,7 @@ form.addEventListener('submit', function (e) {
     petArr[index] = data;
     editForm.classList.add('hide');
     clearInput();
-    renderTableData(petArr);
+    renderTableData(petArr, 'edit');
     saveToStorage('pet', petArr);
   }
 });
-renderTableData(petArr);

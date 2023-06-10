@@ -53,39 +53,6 @@ typeInput.addEventListener('change', function () {
   }
 });
 
-// Function show pet list
-const renderTableData = function (arr) {
-  tableBodyEl.innerHTML = '';
-  arr.forEach((pet) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `<th scope="row">${pet.id}</th>
-  <td>${pet.name}</td>
-  <td>${pet.age}</td>
-  <td>${pet.type}</td>
-  <td>${pet.petWeight} kg</td>
-  <td>${pet.petLength} cm</td>
-  <td>${pet.breed}</td>
-  <td>
-    <i class="bi bi-square-fill" style="color: ${pet.color}"></i>
-  </td>
-  <td><i class="bi ${
-    pet.vaccinated ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
-  }"></i></td>
-  <td><i class="bi ${
-    pet.dewormed ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
-  }"></i></td>
-  <td><i class="bi ${
-    pet.sterilized ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
-  }"></i></td>
-  <td>${pet.date}</td>
-<td>
-    <button type="button" class="btn btn-danger" onclick="deletePet('${
-      pet.id
-    }')">Delete</button>
-  </td>`;
-    tableBodyEl.appendChild(row);
-  });
-};
 // Load data from LocalStorage
 const petArr = getFromStorage('pet') || [];
 renderTableData(petArr);
