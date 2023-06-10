@@ -30,10 +30,13 @@ document.getElementById('import-btn').addEventListener('click', function () {
     alert('Please choose a JSON file');
   } else {
     const upLoadPet = JSON.parse(data);
+    const set = new Set();
+    upLoadPet.forEach((pet) => set.add(pet.id));
     currentPet.forEach((pet) => {
-      !upLoadPet.some((x) => x.id === pet.id) && upLoadPet.push(pet);
+      if (!set.has(pet.id)) upLoadPet.push(pet);
     });
     fileUpLoad.value = '';
     saveToStorage('pet', upLoadPet);
+    alert('Success');
   }
 });
