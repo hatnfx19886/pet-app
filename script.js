@@ -92,15 +92,6 @@ form.addEventListener('submit', function (e) {
   }
 });
 
-// Delete pet
-const deletePet = function (petId) {
-  if (confirm('Are you sure ?')) {
-    petArr = petArr.filter((x) => x.id !== petId);
-    renderTableData(petArr);
-    saveToStorage('pet', petArr);
-  }
-};
-
 // Show healthy pet
 let healthyCheck = false;
 showBtn.addEventListener('click', function () {
@@ -118,3 +109,14 @@ showBtn.addEventListener('click', function () {
     renderTableData(petArr);
   }
 });
+
+// Delete pet
+const deletePet = function (petId) {
+  if (confirm('Are you sure ?')) {
+    petArr = petArr.filter((x) => x.id !== petId);
+    renderTableData(petArr);
+    saveToStorage('pet', petArr);
+    showBtn.textContent = 'Show Healthy Pet';
+    healthyCheck = false;
+  }
+};
