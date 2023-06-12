@@ -32,16 +32,6 @@ const petArr = getFromStorage('pet') || [];
 
 renderTableData(petArr, 'edit');
 
-// Show breed list
-const renderBreed = function (arr) {
-  breedInput.innerHTML = `<option>Select Breed</option>`;
-  arr.forEach((breed) => {
-    const option = document.createElement('option');
-    option.innerHTML = `<option>${breed.breed}</option>`;
-    breedInput.appendChild(option);
-  });
-};
-
 const breedArr = getFromStorage('breed') || [];
 const dogArr = breedArr.filter((oj) => oj.type === 'Dog');
 const catArr = breedArr.filter((oj) => oj.type === 'Cat');
@@ -76,7 +66,6 @@ const editPet = function (petid) {
 };
 
 // Click Submit
-let now = new Date();
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   const data = {
@@ -91,7 +80,7 @@ form.addEventListener('submit', function (e) {
     vaccinated: vaccinatedInput.checked,
     dewormed: dewormedInput.checked,
     sterilized: sterilizedInput.checked,
-    date: `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`,
+    date: new Date().toLocaleDateString('vi-VN'),
   };
   // Check validate
   let validate = true;

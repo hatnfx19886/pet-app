@@ -30,16 +30,6 @@ const clearInput = function () {
   sterilizedInput.checked = false;
 };
 
-// Show breed list
-const renderBreed = function (arr) {
-  breedInput.innerHTML = `<option>Select Breed</option>`;
-  arr.forEach((breed) => {
-    const option = document.createElement('option');
-    option.innerHTML = `${breed.breed}`;
-    breedInput.appendChild(option);
-  });
-};
-
 const breedArr = getFromStorage('breed') || [];
 const dogArr = breedArr.filter((oj) => oj.type === 'Dog');
 const catArr = breedArr.filter((oj) => oj.type === 'Cat');
@@ -54,11 +44,10 @@ typeInput.addEventListener('change', function () {
 });
 
 // Load data from LocalStorage
-const petArr = getFromStorage('pet') || [];
+let petArr = getFromStorage('pet') || [];
 renderTableData(petArr);
 
 // Click Submit
-let now = new Date();
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   const data = {
@@ -73,7 +62,7 @@ form.addEventListener('submit', function (e) {
     vaccinated: vaccinatedInput.checked,
     dewormed: dewormedInput.checked,
     sterilized: sterilizedInput.checked,
-    date: `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`,
+    date: new Date().toLocaleDateString('vi-VN'),
   };
   // Check validate
   let validate = true;
@@ -106,8 +95,7 @@ form.addEventListener('submit', function (e) {
 // Delete pet
 const deletePet = function (petId) {
   if (confirm('Are you sure ?')) {
-    const index = petArr.findIndex((x) => x.id === petId);
-    petArr.splice(index, 1);
+    petArr = petArr.filter((x) => x.id !== petId);
     renderTableData(petArr);
     saveToStorage('pet', petArr);
   }

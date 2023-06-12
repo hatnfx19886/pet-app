@@ -48,3 +48,13 @@ const renderTableData = function (arr, type) {
     tableBodyEl.appendChild(row);
   });
 };
+
+// Show breed list
+const renderBreed = function (arr) {
+  breedInput.innerHTML = `<option>Select Breed</option>`;
+  arr.forEach((breed) => {
+    const option = document.createElement('option');
+    option.innerHTML = `<option>${breed.breed}</option>`;
+    breedInput.appendChild(option);
+  });
+};
