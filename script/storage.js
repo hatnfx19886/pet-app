@@ -39,11 +39,18 @@ const renderTableData = function (arr, type) {
   }"></i></td>
   <td>${pet.date}</td>
 <td>
-    <button type="button" class="btn btn-${
-      type === 'edit' ? 'warning' : 'danger'
-    }" onclick="${type === 'edit' ? 'editPet' : 'deletePet'}('${pet.id}')">${
-      type === 'edit' ? 'Edit' : 'Delete'
-    }</button>
+    ${
+      type === 'home'
+        ? `<button type="button" class="btn btn-danger" onclick="deletePet('${pet.id}')">Delete 
+    </button>`
+        : ''
+    }
+    ${
+      type === 'edit'
+        ? `<button type="button" class="btn btn-warning" onclick="editPet('${pet.id}')">Edit 
+    </button>`
+        : ''
+    }
   </td>`;
     tableBodyEl.appendChild(row);
   });

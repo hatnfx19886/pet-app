@@ -45,7 +45,7 @@ typeInput.addEventListener('change', function () {
 
 // Load data from LocalStorage
 let petArr = getFromStorage('pet') || [];
-renderTableData(petArr);
+renderTableData(petArr, 'home');
 
 // Click Submit
 form.addEventListener('submit', function (e) {
@@ -87,7 +87,7 @@ form.addEventListener('submit', function (e) {
   if (validate) {
     petArr.push(data);
     clearInput();
-    renderTableData(petArr);
+    renderTableData(petArr, 'home');
     saveToStorage('pet', petArr);
   }
 });
@@ -102,11 +102,11 @@ showBtn.addEventListener('click', function () {
     );
     showBtn.textContent = 'Show All Pet';
     healthyCheck = true;
-    renderTableData(healthyArr);
+    renderTableData(healthyArr, 'home');
   } else {
     showBtn.textContent = 'Show Healthy Pet';
     healthyCheck = false;
-    renderTableData(petArr);
+    renderTableData(petArr, 'home');
   }
 });
 
@@ -114,7 +114,7 @@ showBtn.addEventListener('click', function () {
 const deletePet = function (petId) {
   if (confirm('Are you sure ?')) {
     petArr = petArr.filter((x) => x.id !== petId);
-    renderTableData(petArr);
+    renderTableData(petArr, 'home');
     saveToStorage('pet', petArr);
     showBtn.textContent = 'Show Healthy Pet';
     healthyCheck = false;
